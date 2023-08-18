@@ -15,6 +15,7 @@ function LiffComponent() {
       liff.getProfile().then((data) => setProfile(data));
     }
   }, []);
+  console.log(profile);
   return (
     <Container>
       <div>
@@ -35,5 +36,4 @@ function LiffComponent() {
     </Container>
   );
 }
-
 export default LiffComponent;
