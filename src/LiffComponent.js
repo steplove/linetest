@@ -37,9 +37,9 @@ function LiffComponent() {
   }, []);
   const [qrCode, setqrCode] = useState(null); // ปรับ qrCode เป็น null เริ่มต้น
   const [showQR, setShowQR] = useState(false); // เพิ่มสถานะเพื่อควบคุมการแสดง QR
-
+  const [ amount, setAmount ] = useState(100.00);
   function handleQR() {
-    const newQRCode = generatePayload("1103701855401", "100");
+    const newQRCode = generatePayload("1103701855401", {amount});
     setqrCode(newQRCode); // เมื่อคลิก Generate Promptpay QR ให้อัพเดตค่า qrCode
     setShowQR(true); // แสดง QR Code
   }
