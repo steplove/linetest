@@ -25,6 +25,7 @@ const FlexContainer = styled.div`
 const QRWrapper = styled.div`
   margin: auto;
   padding: 10px;
+  display: ${props => props.visible ? 'block' : 'none'}; // เพิ่มส่วนนี้
 `
 
 const InputWrapper = styled.div`
@@ -34,34 +35,24 @@ const InputWrapper = styled.div`
 `
 
 function Pay() {
-  const [ phoneNumber, setPhoneNumber ] = useState("012-345-6789");
-  const [ amount, setAmount ] = useState(1.00);
-  const [ qrCode ,setqrCode ] = useState("sample");
 
-  function handlePhoneNumber(e) {
-    setPhoneNumber(e.target.value);
-  }
+  const [qrCode, setqrCode] = useState(null); // ปรับ qrCode เป็น null เริ่มต้น
+  const [showQR, setShowQR] = useState(false); // เพิ่มสถานะเพื่อควบคุมการแสดง QR
 
-  function handleAmount(e) {
-    if (e.target.value > 0) {
-      setAmount(parseFloat(e.target.value));
-    } else setAmount(0);
-  }
 
   function handleQR() {
-    setqrCode(generatePayload(phoneNumber, { amount }));
+    const newQRCode = generatePayload("1103701855401",  "100" );
+    setqrCode(newQRCode); // เมื่อคลิก Generate Promptpay QR ให้อัพเดตค่า qrCode
+    setShowQR(true); // แสดง QR Code
   }
 
   return (
     <Container>
-      <Title>I'm out of money so please donate me!</Title>
       <FlexContainer>
-        <QRWrapper>
-          <QRCode value={qrCode} />
+        <QRWrapper visible={showQR}> {/* ใช้สถานะ showQR เพื่อควบคุมการแสดง */}
+          {qrCode && <QRCode value={qrCode} />} {/* แสดง QR Code เมื่อ qrCode ไม่เป็น null */}
         </QRWrapper>
         <InputWrapper>
-          <input type="text" value={phoneNumber} onChange={handlePhoneNumber} />
-          <input type="number" value={amount} onChange={handleAmount} />
           <button onClick={handleQR}>Generate Promptpay QR</button>
         </InputWrapper>
       </FlexContainer>
