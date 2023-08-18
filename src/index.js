@@ -3,8 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import liff from '@line/liff';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+liff.init({ liffId: '2000414649-29Q1LMp4' }).then(() => {
+  // ตรวจสอบสถานะการเข้าสู่ระบบ
+  if (!liff.isLoggedIn()) {
+    liff.login();
+  }
+});
 root.render(
   <React.StrictMode>
     <App />
