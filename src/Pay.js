@@ -53,7 +53,7 @@ function Pay() {
           {qrCode && (
             <div>
               <QRCode value={qrCode} />
-              <p>ขอตังหน่อย</p>
+              <p>ขอตังหน่อย สแกนโอนเลยยยยยยย</p>
             </div>
           )}
         </QRWrapper>
