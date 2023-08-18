@@ -5,7 +5,9 @@ import QRCode from "qrcode.react";
 import styled from "styled-components";
 const Container = styled.div`
   height: 100vh;
-  padding: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const InputWrapper = styled.div`
@@ -17,7 +19,7 @@ const InputWrapper = styled.div`
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
 `;
 const QRWrapper = styled.div`
   margin: auto;
